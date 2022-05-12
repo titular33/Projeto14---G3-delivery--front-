@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { signUp, signIn } from "../controllers/authControllers";
-import { validSignUp, validSignIn } from "../middlewares/authMiddlewares.js";
+import { signUp, signIn } from "../controllers/authController.js";
+import { validSignUp, validSignIn } from "../middlewares/authMiddleware.js";
 
 const authRouter = Router();
 authRouter.post("/sign-up", validSignUp, signUp);
