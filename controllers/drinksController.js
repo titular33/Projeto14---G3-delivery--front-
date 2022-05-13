@@ -1,10 +1,8 @@
 import db from "../db.js";
 
 async function drinks(req, res) {
-    const { category } = req.body; //usuário vai mandar a categoria desejada por meio do reqparams...
-
     try {
-        const drinks = await db.collection("drinks").find({ idCategoria: category }).toArray();
+        const drinks = await db.collection("drinks").find({}).toArray();
         res.status(200).send(drinks);
 
     } catch (error) {
