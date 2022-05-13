@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import cors from "cors";
 
-import authRouter from "./routes/authRouter";
+import authRouter from "./routes/authRouter.js";
 
 dotenv.config();
 
