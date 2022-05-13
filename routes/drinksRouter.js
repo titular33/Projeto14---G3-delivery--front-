@@ -1,8 +1,7 @@
 import { Router } from "express";
 import drinks from "../controllers/drinksController.js";
-import validToken from "../middlewares/drinksMiddleware.js";
 
 const drinksRouter = Router();
-drinksRouter.get("/drinks", validToken, drinks);
+drinksRouter.get("/drinks", drinks);
 
 export default drinksRouter;
