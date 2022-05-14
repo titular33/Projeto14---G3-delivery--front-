@@ -12,11 +12,6 @@ async function validSignUp(req, res, next) {
         return;
     }
 
-    if (password != confirmedPassword) {
-        res.status(422).send(error.details.map((detail) => detail.message));
-        return;
-    }
-
     try {
         const isEmailExist = await db.collection("users").findOne({ email });
         if (isEmailExist) {
