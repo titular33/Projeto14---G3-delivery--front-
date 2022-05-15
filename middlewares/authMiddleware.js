@@ -1,18 +1,13 @@
 import db from "../db.js";
 import bcrypt from "bcrypt";
 
-import { signUpSchema, signInSchema } from "../schemas/authSchemas"
+import { signUpSchema, signInSchema } from "../schemas/authSchemas.js"
 
 async function validSignUp(req, res, next) {
     const { name, email, password, confirmedPassword } = req.body;
     const { error } = signUpSchema.validate(req.body, { abortEarly: false });
 
     if (error) {
-        res.status(422).send(error.details.map((detail) => detail.message));
-        return;
-    }
-
-    if (password != confirmedPassword) {
         res.status(422).send(error.details.map((detail) => detail.message));
         return;
     }

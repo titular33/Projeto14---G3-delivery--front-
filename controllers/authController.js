@@ -24,7 +24,7 @@ async function signIn(req, res) {
         const { user } = res.locals;
 
         await db.collection("sessions").insertOne({ token, userId: user._id });
-        res.send({ token: token }).status(200);
+        res.send({ token: token, urlImage: user.urlImage, name:user.name }).status(200);
 
     } catch (error) {
         console.log("erro ao se logar...", error);

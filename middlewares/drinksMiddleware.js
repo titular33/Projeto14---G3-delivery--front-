@@ -17,13 +17,11 @@ async function validToken(req, res, next) {
         }
 
         const user = await db.collection("users").findOne({ _id: session.userId });
+        console.log("USER",user)
         if (!user) {
             res.status(404).send("user não encontrado...");
             return;
         }
-        
-        delete user._id;
-        delete user.password;
 
         res.locals.user = user;
     

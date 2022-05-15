@@ -3,16 +3,17 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import cors from "cors";
 
-import authRouter from "./routes/authRouter";
-import drinksRouter from "./routes/drinksRouter";
+import authRouter from "./routes/authRouter.js";
+import drinksRouter from "./routes/drinksRouter.js";
+
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(json());
-app.use("/auth", authRouter);
-app.use("/drinks", drinksRouter);
+app.use(authRouter);
+app.use(drinksRouter);
 
 
 app.listen(process.env.PORT, () => {
