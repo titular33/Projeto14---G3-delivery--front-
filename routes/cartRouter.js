@@ -1,17 +1,10 @@
 import { Router } from "express";
-import {
-  addProduct,
-  getCart,
-  deleteProduct,
-  changeQuant,
-} from "../controllers/cartController.js";
+import { addProduct, productsCart } from "../controllers/cartController.js";
 import { validToken } from "../middlewares/tokenMiddleware";
 
 const cartRouter = Router();
 
-cartRouter.put("/addProduct/:id", validToken, addProduct);
-cartRouter.get("/cart", validToken, getCart);
-cartRouter.delete("/cart/:productId", validToken, deleteProduct);
-cartRouter.post("/changeQuant", validToken, changeQuant);
+cartRouter.post("/cart", validToken, addProduct);
+cartRouter.get("/cart", validToken, productsCart);
 
 export default cartRouter;
