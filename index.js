@@ -5,6 +5,7 @@ import cors from "cors";
 
 import authRouter from "./routes/authRouter.js";
 import drinksRouter from "./routes/drinksRouter.js";
+import cartRouter from "./routes/cartRouter.js";
 
 
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(json());
 app.use(authRouter);
 app.use(drinksRouter);
+app.use(cartRouter);
 
 
 app.listen(process.env.PORT, () => {
