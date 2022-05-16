@@ -2,13 +2,13 @@ import db from "./../db.js";
 
 export async function addProduct(req, res) {
   const { user } = res.locals;
-  const { infoDrink } = req.body;
+  const { name, idProduct, brand, image, price } = req.body;
 
   console.log("USER", user)
-  console.log("INFOSDRINK", infoDrink)
+  console.log("INFOSDRINK", name, idProduct, brand, image, price)
 
   try {
-    await db.collection("carts").insertOne({idUser: user._id, infoDrink: infoDrink});
+    await db.collection("carts").insertOne({idUser: user._id, name: name, idProduct: idProduct, brand: brand, image: image, price: price});
 
     console.log("USERID", user._id)
     res.send({idUser: user._id}).status(200);
