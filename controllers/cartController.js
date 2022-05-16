@@ -27,6 +27,23 @@ export async function productsCart(req, res) {
     res.send(userCart).status(200);
 
   } catch (error) {
-    res.status(500).send("Falha no addProduct " + error);
+    res.status(500).send("Falha no productsCart " + error);
+  }
+}
+
+export async function finishOrder(req, res) {
+  const { user } = res.locals;
+  const { cartProducts } = req.body;
+
+  console.log("USER", user)
+  console.log("INFOSREQ.BODY", req.body)
+  console.log("cartProducts", cartProducts)
+
+  try {
+    await db.collection("sold").insertMany({cartProducts});
+    res.sendStatus(200);
+
+  } catch (error) {
+    res.status(500).send("Falha no finishOrder " + error);
   }
 }
