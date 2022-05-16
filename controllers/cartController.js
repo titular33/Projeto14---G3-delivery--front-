@@ -28,6 +28,7 @@ export async function finishOrder(req, res) {
   const { cartProducts } = req.body;
 
   try {
+    await db.collection("solds").find({}).toArray();
     await db.collection("solds").insertMany({ cartProducts });
     res.sendStatus(200);
 
