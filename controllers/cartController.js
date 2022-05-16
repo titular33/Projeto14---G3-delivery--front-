@@ -36,18 +36,15 @@ export async function finishOrder(req, res) {
   }
 }
 
-/*
 export async function deleteProducts(req, res) {
-
-  const cart = db.collection("carts").find({}).toArray();
+  const { user } = res.locals;
 
   try {
-    await db.collection("carts").deleteMany({cart});
-    res.sendStatus(200);
-
-  } catch (error) {
-    res.status(500).send(error);
-    console.log(error);
+    await db.collection("carts").deleteMany({ idUser: user._id });
+    res.status(200).send("Cart atualizado!");
+  } catch (e) {
+    res
+      .status(500)
+      .send("Falha no deleteProduct, aconteceu o seguinte erro: " + e);
   }
 }
-*/
