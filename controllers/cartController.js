@@ -1,5 +1,5 @@
 import db from "./../db.js";
-//import { ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 export async function addProduct(req, res) {
   const { user } = res.locals;
@@ -43,8 +43,17 @@ export async function deleteProducts(req, res) {
     await db.collection("carts").deleteMany({ idUser: user._id });
     res.status(200).send("Cart atualizado!");
   } catch (e) {
-    res
-      .status(500)
-      .send("Falha no deleteProduct, aconteceu o seguinte erro: " + e);
+    res.status(500).send("Falha no deleteProducts, aconteceu o seguinte erro: " + e);
+  }
+}
+
+export async function deleteUniqueProduct(req, res) {
+  const { id } = req.params;
+
+  try {
+    await db.collection("carts").deleteOne({ _id: new ObjectId(id) });
+    res.status(200).send("Cart atualizado!");
+  } catch (e) {
+    res.status(500).send("Falha no deleteUniqueProduct, aconteceu o seguinte erro: " + e);
   }
 }
