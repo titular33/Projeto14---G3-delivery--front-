@@ -5,13 +5,13 @@ import {
   deleteProduct,
   changeQuant,
 } from "../controllers/cartController.js";
-import { userTokenMiddleware } from "../middlewares/userTokenMiddleware.js";
+import { validToken } from "../middlewares/tokenMiddleware";
 
 const cartRouter = Router();
 
-cartRouter.put("/addProduct/:id", userTokenMiddleware, addProduct);
-cartRouter.get("/cart", userTokenMiddleware, getCart);
-cartRouter.delete("/cart/:productId", userTokenMiddleware, deleteProduct);
-cartRouter.post("/changeQuant", userTokenMiddleware, changeQuant);
+cartRouter.put("/addProduct/:id", validToken, addProduct);
+cartRouter.get("/cart", validToken, getCart);
+cartRouter.delete("/cart/:productId", validToken, deleteProduct);
+cartRouter.post("/changeQuant", validToken, changeQuant);
 
 export default cartRouter;
