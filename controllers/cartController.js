@@ -28,7 +28,7 @@ export async function finishOrder(req, res) {
   const { cartProducts } = req.body;
 
   try {
-    await db.collection("solds").insertMany([{ cartProducts }]);
+    await db.collection("solds").insertMany({ cartProducts });
     res.sendStatus(200);
 
   } catch (error) {
@@ -37,10 +37,11 @@ export async function finishOrder(req, res) {
 }
 
 export async function deleteProducts(req, res) {
-  const { id } = req.params;
+
+  const cart = db.collection("carts").find({}).toArray();
 
   try {
-    await db.collection("drinks").deleteOne({  _id: new ObjectId(id) });
+    await db.collection("carts").deleteMany({cart});
     res.sendStatus(200);
 
   } catch (error) {
